@@ -1,0 +1,74 @@
+
+
+<hr />
+
+
+
+<div>
+   <div style="text-align: center ;"> <h2>Photo Listing</h2></div>
+   <mat-grid-list cols="4" rowHeight="100px"  gutterSize="10px">
+   
+   <mat-grid-tile *ngFor="let photo of listPhotos | async " rowspan="4" >
+      <mat-card class="my-card" style="background-image:url({{photo.url}});position: absolute;
+      top: 5px; bottom: 5px;left: 5px;right: 5px;">
+      <!--not nowww <mat-card class="my-card"  style="background-image:url({{photos.url}});display: block;width:100%">
+               <img mat-card-image style="display: block;width:100%" src="{{photos.url}}" alt="{{photos.url}}"> -->
+
+       <mat-card-title></mat-card-title>
+       <mat-card-content><div>
+
+        <p> {{photo.title}}</p>
+        <p> {{photo.id}}</p>
+         <p>{{photo.url}}</p><br/></div>
+         <div *ngIf="photosForComp.indexOf(photo) == -1">
+         <button (click)="addToCompareList(photo)" md-raised-button color="primary">Compare</button>
+       </div>
+         <div *ngIf="photosForComp.indexOf(photo) > -1">
+         <button  (click)="removePhoto(photo)" md-raised-button color="primary">Remove</button>
+       </div>
+       </mat-card-content>
+     </mat-card> 
+    
+   </mat-grid-tile>
+ </mat-grid-list>  
+
+<hr />
+
+
+<div>
+
+<div>
+
+  <div style="text-align: center ;"> <h2>COMPARISON TABLE</h2></div>
+<table>
+  <tr></tr>
+<tr>
+ <th>PHOTO</th>
+ <th>ID</th>
+ <th>TITLE</th>
+ <th>URL</th>
+ <th>THUMBNAIL URL</th>
+ 
+</tr>
+<tr *ngFor="let photo of photosForComp" >
+  <td > <img style="display: block;width:100%;" [src]="photo.url" />
+  </td>
+ <td>{{photo.id}}</td>
+ <td>{{photo.title}}</td>
+ <td>{{photo.url}}</td>
+ <td>{{photo.thumbnailUrl}}</td>
+</tr>
+
+</table>
+
+
+</div>
+
+   
+</div>
+
+
+
+
+
+<!-- <router-outlet></router-outlet> -->
